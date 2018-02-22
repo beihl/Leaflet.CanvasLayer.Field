@@ -1,18 +1,20 @@
+import L from 'leaflet';
+
 // base
 import Vector from './Vector.js';
-window.L.Vector = Vector;
+L.Vector = Vector;
 
 import Cell from './Cell.js';
-window.L.Cell = Cell;
+L.Cell = Cell;
 
 import Field from './Field.js';
-window.L.Field = Field;
+L.Field = Field;
 
 import ScalarField from './ScalarField.js';
-window.L.ScalarField = ScalarField;
+L.ScalarField = ScalarField;
 
 import VectorField from './VectorField.js';
-window.L.VectorField = VectorField;
+L.VectorField = VectorField;
 
 // layer
 require('./layer/L.CanvasLayer.js');

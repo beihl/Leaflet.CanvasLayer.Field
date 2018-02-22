@@ -1,5 +1,7 @@
 import Field from './Field';
 
+import GeoTIFF from 'geotiff';
+
 /**
  * Scalar Field
  */
@@ -98,9 +100,26 @@ export default class ScalarField extends Field {
         let tiff = GeoTIFF.parse(data); // geotiff.js
         let image = tiff.getImage();
         let rasters = image.readRasters();
-        let tiepoint = image.getTiePoints()[0];
+
+        let tiepoint = {i:1,j:1,k:1,x:0,y:0,z:0};
+
+        if( image.hasOwnProperty('tiepoint'))
+            tiepoint = image.getTiePoints()[0];
+
         let fileDirectory = image.getFileDirectory();
-        let [xScale, yScale] = fileDirectory.ModelPixelScale;
+
+        let xScale = 0, yScale = 0;
+
+        if (fileDirectory.hasOwnProperty('ModelPixelScale'))
+            [xScale, yScale] = fileDirectory.ModelPixelScale;
+        else
+            if(fileDirectory.hasOwnProperty('ModelTransformation')) {
+                let transform = fileDirectory.ModelTransformation;
+
+                xScale = transform[0];
+                yScale = -transform[5];
+
+            }
 
         if (typeof bandIndexes === 'undefined' || bandIndexes.length === 0) {
             bandIndexes = [...Array(rasters.length).keys()];

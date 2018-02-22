@@ -11,6 +11,12 @@ const config = {
         filename: 'leaflet.canvaslayer.field.js'
     },
     devtool: 'source-map',
+    devServer: {
+
+        compress: true,
+        port: 9000,
+        index: 'wdt.html'
+    },
     module: {
         rules: [
             {
