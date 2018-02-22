@@ -1,5 +1,6 @@
-import Field from './Field';
+import * as d3 from 'd3';
 
+import Field from './Field';
 import GeoTIFF from 'geotiff';
 
 /**
