@@ -30,4 +30,8 @@ require('./control/L.Control.ColorBar.js');
 console.log('leaflet.canvaslayer.field v1.4.1 (in progress...)');
 /* eslint-enable no-console */
 
+var chroma = require('chroma-js'); // Version 0.6.x
+
+L.chroma = chroma;
+
 export default L;

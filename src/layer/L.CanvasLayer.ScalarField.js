@@ -1,6 +1,6 @@
 import Cell from '../Cell';
-import chroma from 'chroma-js';
 
+//var chroma = require('chroma-js'); // Version 0.6.x
 /**
  * ScalarField on canvas (a 'Raster')
  */
@@ -23,7 +23,7 @@ L.CanvasLayer.ScalarField = L.CanvasLayer.Field.extend({
     },
 
     _defaultColorScale: function() {
-        return chroma.scale(['white', 'black']).domain(this._field.range);
+        return L.chroma.scale(['white', 'black']).domain(this._field.range);
     },
 
     setColor(f) {
@@ -200,7 +200,7 @@ L.CanvasLayer.ScalarField = L.CanvasLayer.Field.extend({
         if (typeof c === 'function') {
             c = this.options.color(v);
         }
-        let color = chroma(c); // to be more flexible, a chroma color object is always created || TODO improve efficiency
+        let color = L.chroma(c); // to be more flexible, a chroma color object is always created || TODO improve efficiency
         return color;
     }
 });

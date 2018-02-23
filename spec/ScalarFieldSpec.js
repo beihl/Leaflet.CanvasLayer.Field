@@ -145,9 +145,27 @@ describe('ScalarField', function() {
                 });
         });
 
-        it('can be created from one band', function() {
+      it('can be created from one band', function() {
             expect(sf).not.toBe(null);
         });
+    });
+
+    describe('Geotiff: single raster, no modePixelScale or Tie points, only geotransform', function() {
+      let sf;
+
+      beforeEach(function(fileLoaded) {
+        d3
+          .request(`${dataFolder}/no_pixelscale_or tiepoints.tif`)
+          .responseType('arraybuffer')
+          .get(function(error, tiffData) {
+            sf = ScalarField.fromGeoTIFF(tiffData.response, 0);
+            fileLoaded();
+          });
+      });
+
+      it('can be created from one band', function() {
+        expect(sf).not.toBe(null);
+      });
     });
 
     describe('Geotiff: multiple raster, one from each band', function() {
