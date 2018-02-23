@@ -1,4 +1,5 @@
 import Cell from '../Cell';
+import chroma from 'chroma-js';
 
 /**
  * ScalarField on canvas (a 'Raster')
