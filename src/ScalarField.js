@@ -116,10 +116,10 @@ export default class ScalarField extends Field {
         else
             if(fileDirectory.hasOwnProperty('ModelTransformation')) {
                 let transform = fileDirectory.ModelTransformation;
-
                 xScale = transform[0];
                 yScale = -transform[5];
-
+                tiepoint.x = transform[3];
+                tiepoint.y = transform[7];
             }
 
         if (typeof bandIndexes === 'undefined' || bandIndexes.length === 0) {
